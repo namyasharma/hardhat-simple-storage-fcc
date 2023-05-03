@@ -1,8 +1,9 @@
-const { ethers } = require("hardhat")
-const { expect, assert } = require("chai")
+import { ethers } from "hardhat"
+import { assert } from "chai"
+import { Contract } from "ethers"
 
 describe("SimpleStorage", function () {
-    let simpleStotageFactory, simpleStorage
+    let simpleStotageFactory, simpleStorage: Contract
 
     beforeEach(async function () {
         simpleStotageFactory = await ethers.getContractFactory("SimpleStorage")
