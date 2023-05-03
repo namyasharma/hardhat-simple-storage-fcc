@@ -1,6 +1,6 @@
 // imports
-import '@nomiclabs/hardhat-ethers'
-import { ethers, run, network } from 'hardhat'
+import "@nomiclabs/hardhat-ethers"
+import { ethers, run, network } from "hardhat"
 //async
 async function main() {
     const SimpleStotageFactory = await ethers.getContractFactory(

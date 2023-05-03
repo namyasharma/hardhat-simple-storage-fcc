@@ -4,7 +4,7 @@ import "./tasks/block-number"
 import "hardhat-gas-reporter"
 import "solidity-coverage"
 import "@nomiclabs/hardhat-ethers"
-
+import "@typechain/hardhat"
 
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL
 const PRIVATE_KEY = process.env.PRIVATE_KEY

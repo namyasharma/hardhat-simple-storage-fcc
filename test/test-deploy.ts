@@ -1,19 +1,22 @@
 import { ethers } from "hardhat"
 import { assert } from "chai"
-import { Contract } from "ethers"
+import { SimpleStorage, SimpleStorage__factory } from "../typechain-types"
 
 describe("SimpleStorage", function () {
-    let simpleStotageFactory, simpleStorage: Contract
+    let simpleStorageFactory: SimpleStorage__factory,
+        simpleStorage: SimpleStorage
 
     beforeEach(async function () {
-        simpleStotageFactory = await ethers.getContractFactory("SimpleStorage")
-        simpleStorage = await simpleStotageFactory.deploy()
+        simpleStorageFactory = (await ethers.getContractFactory(
+            "SimpleStorage"
+        )) as SimpleStorage__factory
+        simpleStorage = await simpleStorageFactory.deploy()
     })
 
     it("Should start with a favourite number of 0", async function () {
         const currentValue = await simpleStorage.retrieve()
         const expectedValue = 0
-        assert.equal(currentValue.toString(), expectedValue)
+        assert.equal(currentValue.toString(), expectedValue.toString())
     })
 
     it("Should update when we call store", async function () {
@@ -21,7 +24,7 @@ describe("SimpleStorage", function () {
         const transactionResponse = await simpleStorage.store(10)
         await transactionResponse.wait(1)
         const currentValue = await simpleStorage.retrieve()
-        assert.notEqual(currentValue.toString(), expectedValue)
+        assert.notEqual(currentValue.toString(), expectedValue.toString())
     })
 
     it("Should add a person to the mapping when we call addPerson", async function () {
